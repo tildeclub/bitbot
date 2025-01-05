@@ -304,7 +304,7 @@ def request_many(requests: typing.List[Request]) -> typing.Dict[str, Response]:
     loop = asyncio.new_event_loop()
     awaits = []
     for request in requests:
-        awaits.append(_request(request))
+        awaits.append(loop.create_task(_request(request)))
     task = asyncio.wait(awaits, timeout=5)
     loop.run_until_complete(task)
     loop.close()
