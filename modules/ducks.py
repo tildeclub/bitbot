@@ -4,7 +4,7 @@
 import random, re, time
 from src import EventManager, ModuleManager, utils
 
-DUCK = "・゜゜・。。・゜゜\_o< QUACK!"
+DUCK = r"・゜゜・。。・゜゜\_o< QUACK!"
 
 DEFAULT_MIN_MESSAGES = 100
 

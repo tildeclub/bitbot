@@ -29,7 +29,7 @@ def lower(case_mapping: str, s: str) -> str:
 def equals(case_mapping: str, s1: str, s2: str) -> bool:
     return lower(case_mapping, s1) == lower(case_mapping, s2)
 
-REGEX_COLOR = re.compile("%s(?:(\d{1,2})(?:,(\d{1,2}))?)?" % consts.COLOR)
+REGEX_COLOR = re.compile(r"%s(?:(\d{1,2})(?:,(\d{1,2}))?)?" % consts.COLOR)
 
 def color(s: str, foreground: consts.IRCColor,
         background: consts.IRCColor=None,

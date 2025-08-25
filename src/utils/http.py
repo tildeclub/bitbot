@@ -5,7 +5,7 @@ import bs4, netifaces, requests, tornado.httpclient
 from src import IRCBot, utils
 from requests_toolbelt.adapters import source
 
-REGEX_URL = re.compile("https?://\S+", re.I)
+REGEX_URL = re.compile(r"https?://\S+", re.I)
 
 PAIRED_CHARACTERS = [("<", ">"), ("(", ")")]
 

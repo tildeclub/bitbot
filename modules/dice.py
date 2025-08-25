@@ -4,9 +4,9 @@ import random, re
 from src import ModuleManager, utils
 
 ERROR_FORMAT = "Incorrect format! Format must be [number]d[number], e.g. 1d20"
-RE_DICE = re.compile("^([1-9]\d*)?d([1-9]\d*)((?:\s*[-+][1-9]\d{,2})*)\s*$",
-    re.I)
-RE_MODIFIERS = re.compile("([-+]\d+)")
+RE_DICE = re.compile(r"^([1-9]\d*)?d([1-9]\d*)((?:\s*[-+][1-9]\d{,2})*)\s*$",
+      re.I)
+RE_MODIFIERS = re.compile(r"([-+]\d+)")
 
 MAX_DICE = 6
 MAX_SIDES = 100
@@ -15,7 +15,7 @@ class Module(ModuleManager.BaseModule):
     @utils.hook("received.command.roll")
     @utils.hook("received.command.dice", alias_of="roll")
     @utils.kwarg("help", "Roll dice DND-style")
-    @utils.spec("?<1d20>pattern(^(\d+)d(\d+)((?:\s*[-+]\d+)*))")
+    @utils.spec(r"?<1d20>pattern(^(\d+)d(\d+)((?:\s*[-+]\d+)*))")
     def roll_dice(self, event):
         dice_count, side_count = 1, 6
         roll = "1d6"
