@@ -5,9 +5,9 @@ import bs4, netifaces, requests, tornado.httpclient
 from src import IRCBot, utils
 from requests_toolbelt.adapters import source
 
-REGEX_URL = re.compile("https?://\S+", re.I)
+REGEX_URL = re.compile(r"https?://\S+", re.I)
 
-PAIRED_CHARACTERS = ["<>", "()"]
+PAIRED_CHARACTERS = [("<", ">"), ("(", ")")]
 
 # best-effort tidying up of URLs
 def url_sanitise(url: str):
@@ -131,7 +131,7 @@ class Response(object):
         return self.data.decode(encoding or self.encoding)
     def json(self) -> typing.Any:
         return _json.loads(self.data)
-    def soup(self, parser: str="html5lib") -> bs4.BeautifulSoup:
+    def soup(self, parser: str="html.parser") -> bs4.BeautifulSoup:
         return bs4.BeautifulSoup(self.decode(), parser)
 
 def _split_content(s: str) -> typing.Dict[str, str]:
@@ -148,7 +148,7 @@ def _find_encoding(headers: typing.Dict[str, str], data: bytes
         if "charset" in content_header:
             return content_header["charset"]
 
-    soup = bs4.BeautifulSoup(data, "html5lib")
+    soup = bs4.BeautifulSoup(data, "html.parser")
     if not soup.meta == None:
         meta_charset = soup.meta.get("charset")
         if not meta_charset == None:
@@ -304,8 +304,8 @@ def request_many(requests: typing.List[Request]) -> typing.Dict[str, Response]:
     loop = asyncio.new_event_loop()
     awaits = []
     for request in requests:
-        awaits.append(_request(request))
-    task = asyncio.wait(awaits, loop=loop, timeout=5)
+        awaits.append(loop.create_task(_request(request)))
+    task = asyncio.wait(awaits, timeout=5)
     loop.run_until_complete(task)
     loop.close()
 
@@ -316,7 +316,7 @@ class Client(object):
     request_many = request_many
 
 def strip_html(s: str) -> str:
-    return bs4.BeautifulSoup(s, "html5lib").get_text()
+    return bs4.BeautifulSoup(s, "lxml").get_text()
 
 def resolve_hostname(hostname: str) -> typing.List[str]:
     try:

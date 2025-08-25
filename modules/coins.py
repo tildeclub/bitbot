@@ -8,7 +8,7 @@ SIDES = {"heads": 0, "tails": 1}
 DEFAULT_REDEEM_DELAY = 600 # 600 seconds, 10 minutes
 DEFAULT_REDEEM_AMOUNT = "100.0"
 DEFAULT_INTEREST_RATE = "0.01"
-REGEX_FLOAT = re.compile("(?:\d+(?:\.\d{1,2}|$)|\.\d{1,2})")
+REGEX_FLOAT = re.compile(r"(?:\d+(?:\.\d{1,2}|$)|\.\d{1,2})")
 
 DECIMAL_ZERO = decimal.Decimal("0")
 DECIMAL_BET_MINIMUM = decimal.Decimal("0.01")

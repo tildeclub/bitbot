@@ -5,7 +5,7 @@ from src import ModuleManager, utils
 
 URL_TRANSLATE = "http://translate.googleapis.com/translate_a/single"
 URL_LANGUAGES = "https://cloud.google.com/translate/docs/languages"
-REGEX_LANGUAGES = re.compile("(\w+)?:(\w+)? ")
+REGEX_LANGUAGES = re.compile(r"(\w+)?:(\w+)? ")
 
 class Module(ModuleManager.BaseModule):
     @utils.hook("received.command.tr", alias_of="translate")

@@ -5,7 +5,7 @@
 import hashlib, re, urllib.parse
 from src import EventManager, ModuleManager, utils
 
-RE_WORDSPLIT = re.compile("[\s/]")
+RE_WORDSPLIT = re.compile(r"[\s/]")
 
 @utils.export("channelset", utils.BoolSetting("auto-title",
     "Disable/Enable automatically getting info titles from URLs"))
