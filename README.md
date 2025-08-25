@@ -13,9 +13,9 @@ Event-driven, modular IRC bot for Python 3.
   - **Fedora/RHEL**: `sudo dnf install -y gcc python3-devel libxml2-devel libxslt-devel pkgconf-pkg-config`
   - **Debian/Ubuntu**: `sudo apt-get install -y build-essential python3-dev libxml2-dev libxslt1-dev pkg-config`
 
-### 1) Get the code (develop branch)
+### 1) Get the code
 ```bash
-git clone -b develop https://github.com/bitbot-irc/bitbot.git
+git clone https://github.com/bitbot-irc/bitbot.git
 cd bitbot
 ````
 
