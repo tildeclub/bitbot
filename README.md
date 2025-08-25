@@ -129,4 +129,3 @@ Back up the entire `~/.bitbot` directory (config, database, rotated logs). Tools
 * Chat: `#bitbot` on irc.libera.chat.
 * License: GNU GPL v2.0 — see [LICENSE](LICENSE).
 
-```
